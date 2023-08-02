@@ -12,6 +12,7 @@ def get_products():
     products = products_dao.get_all_products(connection)
     response = jsonify(products)
     response.headers.add('Access-control-allow-origin','*')
+    return response
 
 if __name__ == "__main__":
     print("starting python flask")
