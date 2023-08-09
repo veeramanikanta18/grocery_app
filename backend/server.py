@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import products_dao
+import json
 import uom_dao
 from sql_connection import get_sql_connection
 
@@ -33,7 +34,7 @@ def delete_product():
 
 @app.route('/insertProduct', methods =['POST'])
 def insert_product():
-    request_payload = request.form['data']
+    request_payload = json.loads(request.form['data'])
     product_id = products_dao.insert_new_product(connection, request_payload)
     response = jsonify({
         'product_id' : product_id
